@@ -19,7 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post('/', function () {
 //    return request()->all();
     $repository = \request('repository');
-    $dir = '~/Projects/' . $repository['name'];
+    $dir = '/home/lvt/Projects/' . $repository['name'];
     info('Opening ' . $dir);
     $openOK = @chdir($dir);
     if ($openOK) {
