@@ -18,7 +18,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 Route::post('/', function () {
 //    return request()->all();
-    $return_to_github = [];
-    exec('whoami', $return_to_github);
-    return $return_to_github;
+    $repository = \request('repository');
+    $dir = @chdir('~/Projects/' . $repository['name']);
+    if ($dir) {
+        $return_to_github = [];
+        exec('git pull', $return_to_github);
+        return $return_to_github;
+    }
+    return ['update' => false];
 });
