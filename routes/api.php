@@ -19,8 +19,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post('/', function () {
 //    return request()->all();
     $repository = \request('repository');
-    $dir = @chdir('~/Projects/' . $repository['name']);
-    if ($dir) {
+    $dir = '~/Projects/' . $repository['name'];
+    info('Opening ' . $dir);
+    $openOK = @chdir($dir);
+    if ($openOK) {
         $return_to_github = [];
         exec('git pull', $return_to_github);
         return $return_to_github;
