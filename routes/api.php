@@ -17,5 +17,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::post('/', function () {
-    return request()->all();
+//    return request()->all();
+    $return_to_github = [];
+    exec('whoami', $return_to_github);
+    return $return_to_github;
 });
