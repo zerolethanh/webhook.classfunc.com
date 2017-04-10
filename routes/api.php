@@ -26,7 +26,7 @@ Route::post('/', function () {
     info('Opening ' . $dir);
     $openOK = @chdir($dir);
     if ($openOK) {
-        return shell_exec('/usr/bin/git git pull ; /usr/bin/npm run next:build ; /usr/bin/pm2 restart server');
+        return shell_exec('/usr/bin/git pull ; /usr/bin/npm run next:build ; /usr/bin/pm2 restart server');
     }
     return ['update' => false];
 });
