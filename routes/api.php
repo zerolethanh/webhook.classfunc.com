@@ -20,6 +20,8 @@ Route::post('/', function () {
 //    return request()->all();
 //    info(\request()->all());
     $repository = \request('repository');
+//    return $repository;
+
     $dir = '/home/apache/' . $repository['name'];
     info('Opening ' . $dir);
     $openOK = @chdir($dir);
