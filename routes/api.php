@@ -24,7 +24,7 @@ Route::post('/', function () {
     info('Opening ' . $dir);
     $openOK = @chdir($dir);
     if ($openOK) {
-        return shell_exec('git pull');
+        return shell_exec('/usr/bin/git pull');
     }
     return ['update' => false];
 });
