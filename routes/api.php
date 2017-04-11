@@ -28,10 +28,7 @@ Route::post('/', function () {
     if ($openOK) {
         return shell_exec(<<<EOD
 cd $dir
-git checkout -- .
-/usr/bin/git pull
-/usr/bin/npm run next:build
-/usr/bin/pm2 restart server
+php -f ../update.php
 EOD
 );
     }
