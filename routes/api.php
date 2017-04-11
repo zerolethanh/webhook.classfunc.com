@@ -26,7 +26,7 @@ Route::post('/', function () {
     info('Opening ' . $dir);
     $openOK = @chdir($dir);
     if ($openOK) {
-        return shell_exec(<<<EOD
+        return exec(<<<EOD
 cd $dir
 php -f ../update.php
 EOD
