@@ -29,6 +29,8 @@ Route::post('/', function () {
         return exec(<<<EOD
 cd $dir
 php -f ../update.php
+pm2 restart 0
+
 EOD
 );
     }
