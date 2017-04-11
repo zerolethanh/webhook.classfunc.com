@@ -27,6 +27,7 @@ Route::post('/', function () {
     $openOK = @chdir($dir);
     if ($openOK) {
         return shell_exec(<<<EOD
+cd $dir
 git checkout -- .
 /usr/bin/git pull
 /usr/bin/npm run next:build
