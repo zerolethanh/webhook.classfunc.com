@@ -26,13 +26,14 @@ Route::post('/', function () {
     info('Opening ' . $dir);
     $openOK = @chdir($dir);
     if ($openOK) {
-        return exec(<<<EOD
-cd $dir
-php -f ../update.php
-pm2 restart 0
+        exec("cd $dir");
+        exec("git checkout -- .");
+        exec("/usr/bin/git pull");
+        exec("/usr/bin/npm run next:build");
+        $pm2_restart = '';
+        exec("pm2 restart server", $pm2_restart);
+        return $pm2_restart;
 
-EOD
-);
     }
     return ['update' => false];
 });
